@@ -1,19 +1,32 @@
-const getItemByBarcode = (items, barcode) => items.find((item) => item.barcode === barcode);
+const scanItem = (items, barcode) => {
+    const item = items.find(item => {
+        return item.barcode === barcode;
+    });
+    return item;
+};
 
-const addItemToBasket = (basket, item) => {
-    if (item !== undefined) return basket.push(item);
-}
+const addItem = (basket, item) => {
+    basket.push(item);
+    return basket;
+};
 
-const getBasketTotal = basket => basket.reduce((accumulator, item) => accumulator + item.price, 0);
+const basketTotal = basket => {
+    const total = basket.reduce((accumulator, item) => {
+        return accumulator + item.price;
+    }, 0);
+    return total;
+};
 
-const removeItemFromBasket = (basket, barcode) => {
-    const itemIndex = basket.findIndex(item => item.barcode === barcode);
+const removeItem = (basket, barcode) => {
+    const itemIndex = basket.findIndex(item => {
+        return item.barcode === barcode;
+    });
     return basket.splice(itemIndex, 1);
 };
 
 module.exports = {
-    getItemByBarcode,
-    addItemToBasket,
-    getBasketTotal,
-    removeItemFromBasket
+    scanItem,
+    addItem,
+    basketTotal,
+    removeItem
 };
